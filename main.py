@@ -6,7 +6,6 @@ app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:build-a-blog@localhost:8889/build-a-blog'
 app.config['SQLALCHEMY_ECHO'] = True
-
 db = SQLAlchemy(app)
 
 @app.route("/")
@@ -66,11 +65,11 @@ def add_entry():
             return redirect(post_link)
         else:
             if not empty_val(post_title) and not empty_val(post_entry):
-                title_error = "Oops! Please fill in the title."
-                blog_entry_error = " Oops! Please fill in a blog entry."
+                title_error = "Please fill in the title."
+                blog_entry_error = "Please fill in a blog entry."
                 return render_template('new_post.html', blog_entry_error=blog_entry_error, title_error=title_error)
             elif not empty_val(post_title):
-                title_error = "You forgot something. Please fill in a blog title."
+                title_error = "Please fill in a blog title."
                 return render_template('new_post.html', title_error=title_error, post_entry=post_entry)
             elif not empty_val(post_entry):
                 blog_entry_error = "Please fill in a blog entry"
